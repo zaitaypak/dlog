@@ -7,9 +7,14 @@ async function getGiaoPhan(url) {
       const list = [];
       const html = response.data;
       const $ = cheerio.load(html);
+      // const Arr = $("#mw-content-text > div.mw-parser-output > table:nth-child(51) > tbody > tr > td:nth-child(2) > a");
       const Arr = $("#mw-content-text > div.mw-parser-output > table:nth-child(51) > tbody > tr > td:nth-child(2) > a");
         Arr.slice(1, Arr.length).each(function () {
-          list.push(`https://vi.wikipedia.org` + $(this).attr("href"));
+          let ele = {
+            ten : $(this).text(),
+            link : `https://vi.wikipedia.org` + $(this).attr("href")
+          }
+          list.push(ele);
         });
       if (list.length > 1) {
         return list;

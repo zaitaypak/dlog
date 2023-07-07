@@ -5,7 +5,7 @@ const { getGx } = require("../models/giaoXu")
 class GxController {
     // GET /giaoxu
    index(req,res){
-    getGx(url).then(arr => {
+    getGx(req.query.p).then(arr => {
       res.render('gx/giaoxu', {li : arr});
     });
   };
